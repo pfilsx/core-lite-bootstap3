@@ -1,0 +1,36 @@
+{
+  "name": "pfilsx/core-lite-bootstrap3",
+  "description": "The Twitter Bootstrap 3 extension for the Core-Lite framework",
+  "keywords": ["core-lite", "bootstrap"],
+  "type": "core-lite-extension",
+  "license": "BSD-3-Clause",
+  "support": {
+    "issues": "https://github.com/pfilsx/core-lite-bootstap3/issues",
+    "source": "https://github.com/pfilsx/core-lite-bootstap3"
+  },
+  "authors": [
+    {
+      "name": "Pavel Filimonov",
+      "email": "pfilsx@gmail.com"
+    }
+  ],
+  "require": {
+    "pfilsx/core-lite": ">=1.3"
+  },
+  "repositories": [
+    {
+      "type": "vcs",
+      "url": "https://github.com/pfilsx/core-lite"
+    }
+  ],
+  "autoload": {
+    "psr-4": {
+      "core\\bootstrap\\": ""
+    }
+  },
+  "extra": {
+    "branch-alias": {
+      "dev-master": "1.0"
+    }
+  }
+}

@@ -7,23 +7,25 @@ use core\components\AssetBundle;
 
 class BootstrapAsset extends AssetBundle
 {
-    public static function cssAssets()
+    public $basePath = '@vendor/pfilsx/core-lite-bootstrap3/assets';
+
+    public function cssAssets()
     {
         return [
-            '@vendor/pfilsx/core-lite-bootstrap3/assets/bootstrap.min.css' => static::POS_HEAD
+            'bootstrap.min.css' => static::POS_HEAD
         ];
     }
 
-    public static function jsAssets()
+    public function jsAssets()
     {
         return [
-            '@vendor/pfilsx/core-lite-bootstrap3/assets/bootstrap.min.js' => static::POS_BODY_END
+            'bootstrap.min.js' => static::POS_BODY_END
         ];
     }
 
-    public static function fonts(){
+    public function fonts(){
         return [
-            '@vendor/pfilsx/core-lite-bootstrap3/assets/fonts'
+            'fonts'
         ];
     }
 }

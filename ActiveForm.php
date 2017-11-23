@@ -3,16 +3,14 @@
 
 namespace core\bootstrap;
 
-use core\helpers\ArrayHelper;
-use core\web\Html;
 
 class ActiveForm extends \core\widgets\activeform\ActiveForm
 {
     public function init(){
+        if ($this->assetsEnabled){
+            BootstrapAsset::register();
+        }
         parent::init();
-        BootstrapAsset::registerAssets();
-        ob_start();
-        ob_implicit_flush(false);
     }
 
     /**

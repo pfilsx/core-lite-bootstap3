@@ -52,7 +52,9 @@ class ActiveField extends \core\widgets\activeform\ActiveField
 
     protected function render()
     {
-        $html = Html::startTag('div', ArrayHelper::merge_recursive(['class' => 'crl-active-form-group form-group'], $this->_groupOptions));
+        $html = Html::startTag('div', ArrayHelper::merge_recursive([
+            'class' => 'crl-active-form-group form-group'.($this->_model->hasError($this->_attribute) ? ' has-error' : '')
+        ], $this->_groupOptions));
         if ($this->_label == null) {
             $this->label($this->_model->getAttributeLabel($this->_attribute));
         }
@@ -66,6 +68,9 @@ class ActiveField extends \core\widgets\activeform\ActiveField
             $html .= Html::label($this->_label, $this->getFieldName(), $this->_labelOptions);
             $html .= implode(PHP_EOL, $this->_elements);
         }
+        $html .= Html::tag('span', ($this->_model->hasError($this->_attribute)
+            ? $this->_model->getErrors($this->_attribute)[0] : null),
+            ['class' => $this->_attribute.'_help help-block']);
         $html .= Html::endTag('div');
 
         return $html;

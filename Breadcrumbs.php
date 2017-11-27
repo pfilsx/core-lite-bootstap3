@@ -12,7 +12,7 @@ class Breadcrumbs extends \core\widgets\breadcrumbs\Breadcrumbs
     {
         ob_start();
         ob_implicit_flush(false);
-        echo Html::startTag('ol', ['class' => 'crl-breadcrumbs breadcrumbs']);
+        echo Html::startTag('ol', ['class' => 'crl-breadcrumb breadcrumb']);
         foreach ($this->_elements as $key => $url){
             echo "<li><a href=\"$url\">$key</a></li>";
         }

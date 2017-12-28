@@ -15,7 +15,7 @@
     }
   ],
   "require": {
-    "pfilsx/core-lite": ">= 1.6"
+    "pfilsx/core-lite": "dev-feature/upgrade-menu as 1.7-dev"
   },
   "repositories": [
     {

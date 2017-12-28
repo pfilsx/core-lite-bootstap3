@@ -40,7 +40,7 @@ class Menu extends \core\widgets\menu\Menu
                 'role' => 'presentation',
                 'class' => 'dropdown'
             ],$this->itemOptions));
-            echo Html::tag('a', $item['label'].' '.Html::tag('span', ['class' => 'caret']), [
+            echo Html::tag('a', $item['label'].' '.Html::tag('span','', ['class' => 'caret']), [
                 'class' => 'dropdown-toggle',
                 'data-toggle' => 'dropdown',
                 'href' => '#',

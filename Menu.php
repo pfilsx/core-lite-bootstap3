@@ -84,7 +84,7 @@ class Menu extends \core\widgets\menu\Menu
             foreach ($item['items'] as $subItem){
                 echo Html::tag('a', $subItem['label'], ArrayHelper::merge_recursive([
                     'class' => 'list-group-item', //TODO active
-                    'href' => $item['url']
+                    'href' => $subItem['url']
                 ], isset($subItem['options']) ? $subItem['options'] : []));
             }
             echo Html::endTag('div');

@@ -70,12 +70,10 @@ class Menu extends \core\widgets\menu\Menu
         }
     }
     private function renderVerticalItem($item){
-        if (isset($item['items'])){
+        if (isset($item['items'])) {
             $blockId = $this->generateSubItemBlockId();
             echo Html::tag('a', $item['label'], ArrayHelper::merge_recursive([
-                'class' => ($this->_currentUrl == $item['url'] || $this->_currentRoute == $item['url']
-                    ? 'list-group-item active'
-                    : 'list-group-item'),//TODO active
+                'class' => 'list-group-item',//TODO active
                 'data-toggle' => 'collapse',
                 'href' => $blockId
             ], $this->itemOptions));

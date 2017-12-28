@@ -73,19 +73,23 @@ class Menu extends \core\widgets\menu\Menu
     private function renderVerticalItem($item){
         if (isset($item['items'])) {
             $blockId = $this->generateSubItemBlockId();
+            $activeFlag = !empty(array_filter($item['items'], function($a){
+                return $a['url'] == $this->_currentUrl || $a['url'] == $this->_currentRoute;
+            }));
             echo Html::tag('a', $item['label'], ArrayHelper::merge_recursive([
-                'class' => 'list-group-item',//TODO active
+                'class' => 'list-group-item'. ($activeFlag ? ' active' : ''),
                 'data-toggle' => 'collapse',
                 'aria-controls' => $blockId,
                 'href' => '#'.$blockId
             ], $this->itemOptions));
             echo Html::startTag('div', [
-                'class' => 'submenu panel-collapse collapse', //TODO collapse-in
+                'class' => 'submenu panel-collapse collapse'.($activeFlag ? ' in' : ''),
                 'id' => $blockId
             ]);
             foreach ($item['items'] as $subItem){
                 echo Html::tag('a', $subItem['label'], ArrayHelper::merge_recursive([
-                    'class' => 'list-group-item', //TODO active
+                    'class' => 'list-group-item'
+                        . ($subItem['url'] == $this->_currentUrl || $subItem['url'] == $this->_currentRoute ? ' active' : ''),
                     'href' => $subItem['url']
                 ], isset($subItem['options']) ? $subItem['options'] : []));
             }

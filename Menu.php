@@ -77,7 +77,7 @@ class Menu extends \core\widgets\menu\Menu
                 return $a['url'] == $this->_currentUrl || $a['url'] == $this->_currentRoute;
             }));
             echo Html::tag('a', $item['label'], ArrayHelper::merge_recursive([
-                'class' => 'list-group-item'. ($activeFlag ? ' active' : ''),
+                'class' => 'list-group-item'. ($activeFlag ? ' active' : ' collapsed'),
                 'data-toggle' => 'collapse',
                 'aria-controls' => $blockId,
                 'href' => '#'.$blockId

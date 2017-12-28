@@ -70,15 +70,27 @@ class Menu extends \core\widgets\menu\Menu
         }
     }
     private function renderVerticalItem($item){
-
-    }
-    protected function renderVertical()
-    {
-        echo Html::startTag('div', ArrayHelper::merge_recursive($this->options, ['class' => 'list-group']));
-        foreach ($this->items as $item){
-            if (!isset($item['label']) || !isset($item['url'])){
-                throw new \Exception('Invalid parameters passed to Menu::widget items');
+        if (isset($item['items'])){
+            $blockId = $this->generateSubItemBlockId();
+            echo Html::tag('a', $item['label'], ArrayHelper::merge_recursive([
+                'class' => ($this->_currentUrl == $item['url'] || $this->_currentRoute == $item['url']
+                    ? 'list-group-item active'
+                    : 'list-group-item'),//TODO active
+                'data-toggle' => 'collapse',
+                'href' => $blockId
+            ], $this->itemOptions));
+            echo Html::startTag('div', [
+                'class' => 'submenu panel-collapse collapse', //TODO collapse-in
+                'id' => $blockId
+            ]);
+            foreach ($item['items'] as $subItem){
+                echo Html::tag('a', $subItem['label'], ArrayHelper::merge_recursive([
+                    'class' => 'list-group-item', //TODO active
+                    'href' => $item['url']
+                ], isset($subItem['options']) ? $subItem['options'] : []));
             }
+            echo Html::endTag('div');
+        } else {
             echo Html::tag('a', $item['label'], ArrayHelper::merge_recursive($this->itemOptions, [
                 'class' => ($this->_currentUrl == $item['url'] || $this->_currentRoute == $item['url']
                     ? 'list-group-item active'
@@ -86,6 +98,11 @@ class Menu extends \core\widgets\menu\Menu
                 'href' => $item['url']
             ]));
         }
-        echo Html::endTag('div');
+    }
+
+    private static $_subItemBlockId = 0;
+
+    private function generateSubItemBlockId(){
+        return '#submenu-'.(++static::$_subItemBlockId);
     }
 }

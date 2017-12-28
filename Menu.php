@@ -69,13 +69,15 @@ class Menu extends \core\widgets\menu\Menu
             echo Html::endTag('li');
         }
     }
+
     private function renderVerticalItem($item){
         if (isset($item['items'])) {
             $blockId = $this->generateSubItemBlockId();
             echo Html::tag('a', $item['label'], ArrayHelper::merge_recursive([
                 'class' => 'list-group-item',//TODO active
                 'data-toggle' => 'collapse',
-                'href' => $blockId
+                'aria-controls' => $blockId,
+                'href' => '#'.$blockId
             ], $this->itemOptions));
             echo Html::startTag('div', [
                 'class' => 'submenu panel-collapse collapse', //TODO collapse-in
@@ -101,6 +103,6 @@ class Menu extends \core\widgets\menu\Menu
     private static $_subItemBlockId = 0;
 
     private function generateSubItemBlockId(){
-        return '#submenu-'.(++static::$_subItemBlockId);
+        return 'submenu-'.(++static::$_subItemBlockId);
     }
 }
